@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "Checking config..."
+echo "Checking data..."
+echo "ERROR: missing cache file" >&2
+echo "Checking scripts..."
+echo "ERROR: invalid permission" >&2
+echo "Done"

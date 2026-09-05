@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "Linux & Shell Recruit"
+echo "Project: linux-shell-recruit"
+echo "Version: 1.0"

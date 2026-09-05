@@ -1,0 +1,13 @@
+2026-08-31 10:00:01 INFO user=alice action=login
+2026-08-31 10:00:05 INFO user=bob action=login
+2026-08-31 10:01:11 ERROR user=bob code=500
+2026-08-31 10:01:35 WARN user=carol code=401
+2026-08-31 10:02:03 ERROR user=alice code=404
+2026-08-31 10:02:17 ERROR user=bob code=500
+2026-08-31 10:03:21 INFO user=david action=logout
+2026-08-31 10:04:00 ERROR user=carol code=401
+2026-08-31 10:04:31 ERROR user=alice code=500
+2026-08-31 10:05:07 WARN user=bob code=401
+2026-08-31 10:06:12 ERROR user=bob code=500
+2026-08-31 10:07:22 ERROR user=dave code=404
+2026-08-31 10:08:10 INFO user=alice action=logout
