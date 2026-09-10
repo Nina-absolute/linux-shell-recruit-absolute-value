@@ -131,7 +131,7 @@ l	符号链接	find / -type l（找出所有软链接）
     它本身是一个独立的特殊文件，但里面不存储实际数据，只存储了另一个文件或文件夹的路径。当你访问这个软链接时，系统会自动根据里面的“地址”跳转到目标文件。
 
 
-#### 6. 实用命令拆解
+#### 6. 实用命令拆解（deepseek）
 
     `grep "PROJECT_ID" workspace/.secret/id.conf | cut -d'=' -f2 > output/01_project_id.txt`
 
@@ -185,7 +185,7 @@ l	符号链接	find / -type l（找出所有软链接）
 
 示例：`which ls` —— 输出`/usr/bin/ls`，查到`ls`来源。
 
-#### 2. 实用命令拆解
+#### 2. 实用命令拆解（deepseek）
 
 `export PATH=$PATH:$(pwd)/tools`
 环节 1：`export`
@@ -229,4 +229,37 @@ l	符号链接	find / -type l（找出所有软链接）
 完整拼接：接上面的例子，`$(pwd)/tools` 最终会变成 `/home/nina/my-project/tools`。
 
 最终目标：将当前目录下的 `tools` 子文件夹（绝对路径），正式加入到系统的搜索路径中。
+
+
+
+### #3 Code Search
+
+#### 1. 基本知识扫盲 & 关键命令拆解
+
+>`grep -r -l -E "TODO|FIXME" workspace/project/ | sort | uniq > output/03_code_search.txt`
+
+`-l` = List 只输出文件名 - 找到第一个匹配行后，立即输出文件路径并停止读取该文件，保证每个文件只输出一次。
+
+`-E` = Extended Regular Expression 扩展正则表达式，启用扩展正则语法，允许使用 `|`（逻辑或）而不需要反斜杠转义。（允许同时辨认多种关键词）
+
+`"TODO|FIXME"` 模式字符串（Pattern） - 匹配 TODO 或 FIXME - 正则表达式，`|` 表示逻辑或，匹配任何包含 TODO 或 FIXME 的行。
+
+`|`（管道符） = Pipeline 数据流管道 - Shell 创建匿名内核缓冲区，将左侧命令的 `stdout` 连接到右侧命令的 `stdin`，纯内存传递。
+
+`sort` 按字典序排序。
+
+`uniq` = Unique（唯一/去重）去除相邻重复行，将相邻的重复行合并为一行。**前提：必须先 `sort`**，否则无法去重分散的重复项。排好序后，把连续重复的名字只保留一个。
+\\`sort output.txt | uniq`
+
+`>` 输出重定向（覆盖）将最终结果写入指定文件。如果文件已存在，会截断（清空）后重新写入。
+\\`grep ... > output/03_code_search.txt`
+
+
+#### 2. 概念辨析
+
+- 关于`|`的纯内存传递：数据从左边到右边，只装入临时内存缓冲区（执行完自动回收），不写入任何硬盘文件，不经过任何临时文件夹。
+
+
+
+### #4 
 
